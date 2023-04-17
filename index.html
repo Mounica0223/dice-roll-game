@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dice roll game</title>
+</head>
+<body>
+	<div class="container text-center mt-5 bg-info">
+		<h1 class="text-light " id="main">Winner</h1>
+		<div class="dice">
+			<p id="Player1" class="text-light">Player 1</p>
+			<img src="dice6.png"id="img1"/>
+		</div>
+		<button  class="btn btn-danger mt-2 mb-2" onclick="rollTheDice1()">Roller 1</button>
+		<div class="dice">
+			<p id="Player2" class="text-light">Player 2</p>
+			<img src="dice5.png" id="img2"/>
+		</div>
+		<button  class="btn btn-danger mt-2" onclick="rollTheDice2()">Roller 2</button>
+		<div>
+		<button  class="btn btn-success mt-2 mb-2 btn-lg active" onclick="editTheName()">Edit the names</button>
+		</div>
+	</div>
+	<script>
+		let player1="Player1";
+		let player2="Player2";
+
+		function editTheName(){
+			player1=prompt("Enter the name of Player1")
+			player2=prompt("Enter the name of Player2")
+		
+
+		if(player1.length<=3 || player2.length<=3){
+			alert("Please enter atleast 4 letters for both the players")
+			return;
+		}
+		if(player1==player2){
+			alert("Dont enter the same name")
+			return;
+		}
+		document.getElementById("Player1").innerHTML=player1
+
+		document.getElementById("Player2").innerHTML=player2
+		}
+		
+		function rollTheDice1(){
+		 let dice1=document.getElementById("img1");
+		  dice1.setAttribute("src","diceroll.gif")
+			 setTimeout(()=>{
+		 	let random1=Math.floor(Math.random()*6)+1;
+		 	
+		 dice1.setAttribute('src','dice'+random1+'.png')
+		 	},2000)
+		}
+
+	
+		function rollTheDice2(){
+		let dice2=document.getElementById("img2");
+		dice2.setAttribute("src","diceroll.gif")
+		setTimeout(()=>{
+		 	let random2=Math.floor(Math.random()*6)+1;
+		 	
+		 dice2.setAttribute('src','dice'+random2+'.png')
+			},2000)
+		}
+
+		
+		setTimeout(()=>{
+			 let result=document.getElementById("main")
+		 if(random1==random2){
+		 	result.innerHTML="Draw!"
+		 }
+		 else if(random1>random2){
+		 	result.innerHTML= (player1 +"wins the match!")
+		 }
+		 else{
+		 	result.innerHTML= (player2 +" wins the match!")
+		 }
+		
+		},5000)
+		 
+		
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+</body>
+</html>
